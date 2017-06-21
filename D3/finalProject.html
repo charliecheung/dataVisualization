@@ -1,0 +1,194 @@
+<!--
+CPSC583 Project 2.3
+
+Charlie Cheung 
+last updated 2016.04.06
+
+13th World Wushu Championship Information Visualization
+
+╰[ ⁰﹏⁰ ]╯
+
+-->
+
+<!DOCTYPE html>
+<meta charset="utf-8">
+<head>
+<!--- F O N T --->
+<link href='https://fonts.googleapis.com/css?family=Muli' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Ovo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=EB+Garamond' rel='stylesheet' type='text/css'>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+<script type="text/javascript"  src='http://cdn.renderedfont.com/js/renderedfont-0.8.min.js#free'></script>
+
+
+<!--- T I T L E --->
+<title>CPSC583 Final Project</title>
+
+<!---T A B    I C O N --->
+<link rel="shortcut icon" href="{Favicon}" />
+
+<style type="text/css">
+
+/*------[S T Y L E]------- */
+body {
+	margin: 0px;
+	padding: 0px;	
+}
+::-webkit-scrollbar {
+    width: 9px; height: 3px; background: #fcfcfa;
+}
+::-webkit-scrollbar-thumb {
+    background-color:#d7d6d7;  -webkit-border-radius: 1ex;
+}
+#background {
+	position:fixed;
+	height: 100%; width:100%; background: #FFFFFF; 
+}
+#header {
+	position:fixed; margin:auto;
+	top:0; left:0; right:0;
+	width:100%; height:100px;
+	background-color:#FFFFFF; opacity:0.9; z-index:9;
+}
+#linkBlock {
+	position: fixed;
+	left:270px; right:0; top:0; 
+	width:85%; height:10%;opacity:0.9; z-index:9;
+}
+#link a {
+	text-decoration: none; text-transform: none;
+	margin: 40px; text-align: center;
+	font-family: 'EB Garamond', serif; letter-spacing:1px;
+	margin-top:10px; font-size:16px; color: #424242;
+	padding: 0px 2px 0px 2px;
+	-webkit-transition: 0.5s ease;
+    transition: 0.5s ease;
+    -moz-transition: 0.5s ease;
+    -o-transition: 0.5s ease;
+	border-bottom-color:#E6F2EC;
+}
+#link a:hover {
+	padding-bottom:5px;
+	border-bottom: 1px solid; border-bottom-color: #6FA0A3;
+	text-transform: none; text-decoration: none;
+}
+#title a {
+	position:fixed; text-transform:none; text-decoration:none;
+	margin:auto; text-align: center; left:0; right:0;
+	top:50px; z-index:9;
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	color:#424242; font-size:32px;
+}
+#title a:hover {
+	text-transform:none; text-decoration:none;
+}
+#topBlock {
+	position:fixed; z-index:999;
+	top:0; left:75px;
+	height:50px;
+	z-index:99;
+	font-family: 'EB Garamond', serif; letter-spacing:1px;
+	font-size:15px; color: #424242;
+}
+#topBlockImg {
+	position:fixed; top:-25px;left:-25px; z-index:999;
+	height:90px;
+	width:90px;
+	background:#E6F2EC;
+	-moz-border-radius: 50px 50px 50px 50px;
+    -webkit-border-radius: 50px 50px 50px 50px;
+    border-radius: 50%;
+}
+#imageBlock {
+	position:absolute; 
+	margin:auto; left:0; right:0; top:150px;
+	width:80%; height:470px;
+	background: #6FA0A3; 
+    background: -webkit-linear-gradient(#E6F2EC, #6FA0A3); 
+    background: -o-linear-gradient(#E6F2EC, #6FA0A3); 
+    background: -moz-linear-gradient(#E6F2EC, #6FA0A3); 
+    background: linear-gradient(to bottom right, #E6F2EC, #6FA0A3);
+}
+#readMeBlock {
+	position: absolute; 
+	margin:auto; left:0; right:0; top:540px;
+	width:45%; height:500px; background:#FFFFFF;
+	text-align:center; font-family: 'EB Garamond', serif; z-index:1; 
+	color:#424242; font-size:16px;
+}
+h1 {
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+#arrow {
+	position:absolute; z-index:999;
+	margin:auto; left:0; right:0; top: 1200px;
+	text-align:center;
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	font-size: 30px; 
+}
+#arrow a {
+	color:#424242;
+	text-transform:none; 
+	text-decoration:none;
+	-webkit-transition: 0.5s ease;
+    transition: 0.5s ease;
+    -moz-transition: 0.5s ease;
+    -o-transition: 0.5s ease;
+}
+#arrow a:hover {
+	text-transform;
+	text-decoration;
+	font-color:#6FA0A3;
+}
+</style>
+</head>
+<body>
+
+<div id="topBlockImg"></div>
+<div id="topBlock">The 13th WWC</br><font color="#6FA0A3">Infovis</font></div>
+<div id="background"></div>
+<div id="header">
+<div id="linkBlock"><div id="link">
+<a href="file:///C:/Users/Charlie/Downloads/D3/finalProject.html#top">index</a>
+<a href="file:///C:/Users/Charlie/Downloads/D3/countries.html">countries</a>
+<a href="file:///C:/Users/Charlie/Downloads/D3/categories.html">categories</a>
+<a href="file:///C:/Users/Charlie/Downloads/D3/scores.html">scores</a>
+
+<a href="file:///C:/Users/Charlie/Downloads/D3/summary.html">summary</a>
+</div></div></div>
+
+<div id="title"><a href="/"><b>The 13th World Wushu Championship</b></a></div>
+
+<div id="imageBlock"></div>
+<div id="readMeBlock"><h1>Purpose</h1>
+<p>The purpose of this web page is to display the data taken from the 13th
+World Wushu Championship results and present it in a way that highlights the patterns
+to the user in a visually appealing way. </p>
+<h1>About</h1>
+<p>Wushu ("military art") is a Chinese martial art that focuses on internal and external energy. 
+			Wushu is separated into two categories: sanda (which is Chinese kickboxing that incorporates grappling and throws) and taolu (the choreographed component of wushu). 
+			From taolu, wushu is again separated into hand forms, short weapon, and long weapon. Athletes choreograph forms to include kicks, punches, and jumps and are judged on the
+			degree of difficulty in which they complete these movements.
+			</p>
+			<p>
+			The World Wushu Championship is hosted by the International Wushu Federation (IWUF) and takes place biannually, featuring the highest competitive level within the sport.
+			This visualization displays the name, ID, category, and score of athletes from different countries. Interact with this visualization by selecting countries, filtering data, and 
+			data between different countries with each other.
+			<p>
+			The viewer can select from any of the header links or continue scrolling to see a visualization
+			that highlights the data. Since all the different components of the data is best highlighted a different way,
+			I separated each of them so they can have their own visualization. Separately, the web page covers the 
+			countries, categories, scores, and athletes. Another page is dedicated to highlight key data including things like:
+			the average score in each category, highest scores in the entire competition, medal counts, male to female ratio, 
+			highest average scores in the entire competition, and the largest and smallest categories.
+			</p>
+</div>
+
+<p><span title="ʙᴀᴄᴋ ᴛᴏ ᴛᴏᴘ"><a href="#top" style="position: fixed; bottom: 10px; right: 10px; text-decoration: none; color: #424242; font-size: 20px; z-index: 9999999999;">▲</a></span></p>
+
+<div id="arrow">
+<a href="file:///C:/Users/Charlie/Downloads/D3/countries.html">proceed to countries→</a>
+</div>
+
+</body>
+</html>

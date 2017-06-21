@@ -1,0 +1,133 @@
+<!--
+CPSC583 Project 2.3
+
+Charlie Cheung 
+last updated 2016.03.21
+
+13th World Wushu Championship Information Visualization
+
+╰[ ⁰﹏⁰ ]╯
+
+-->
+
+<!DOCTYPE html>
+<meta charset="utf-8">
+<head>
+
+<!--- F O N T --->
+<link href='https://fonts.googleapis.com/css?family=Muli' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Ovo' rel='stylesheet' type='text/css'>
+<!--- T I T L E --->
+<title>Countries</title>
+
+<!---T A B    I C O N --->
+<link rel="shortcut icon" href="{Favicon}" />
+
+<style type="text/css">
+
+/*------[S T Y L E]------- */
+body {
+	margin: 0px;
+	padding: 0px;	
+}
+::-webkit-scrollbar {
+    width: 9px; height: 3px; background: #fcfcfa;
+}
+::-webkit-scrollbar-thumb {
+    background-color:#d7d6d7;  -webkit-border-radius: 1ex;
+}
+#background {
+	position:fixed;
+	height: 100%;
+	width:100%;
+    background: #FFFFFF; 
+    <!--
+	background: -webkit-linear-gradient(#FFFFFF, #F6F6F6); 
+    background: -o-linear-gradient(#FFFFFF, #F6F6F6); 
+    background: -moz-linear-gradient(#FFFFFF, #F6F6F6); 
+    background: linear-gradient(to bottom right, #FFFFFF, #F6F6F6);
+	-->
+}
+#header {
+	position:fixed; margin:auto;
+	top:0; left:0; right:0;
+	width:100%; height:30px;
+	background-color:#FFFFFF; opacity:0.9; z-index:9;
+}
+#linkBlock {
+	position: fixed;
+	margin: auto; left:10; right:0; top:0; 
+	width:85%; height:10%;opacity:0.9; z-index:9;
+}
+#link a {
+	text-decoration: none; text-transform: none;
+	margin: 40px; text-align: center;
+	font-family: 'EB Garamond', serif; letter-spacing:1px;
+	margin-top:10px; font-size:16px; color: #424242;
+	padding: 0px 2px 0px 2px;
+	-webkit-transition: 0.5s ease;
+    transition: 0.5s ease;
+    -moz-transition: 0.5s ease;
+    -o-transition: 0.5s ease;
+	border-bottom-color:#6FA0A3;
+}
+#link a:hover {
+	padding-bottom:5px;
+	border-bottom: 1px solid; border-bottom-color: #6FA0A3;
+	text-transform: none; text-decoration: none;
+}
+#title {
+	position: fixed; z-index:99;
+	margin: auto;
+	left:0; right:2;
+	top:40px; 
+	text-align:left;
+	padding-left:85px;
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	letter-spacing:2px;
+	margin-top:10px;
+	font-size:32px;
+	color: #424242;
+	line-height:1.5;
+	<!--text-shadow:2px 2px 4px #000000;-->
+}
+#topBlock {
+	position:fixed;
+	top:0; left:75px;
+	height:50px;
+	z-index:99;
+	font-family: 'EB Garamond', serif; letter-spacing:1px;
+	font-size:14px; color: #424242;
+}
+#topBlockImg {
+	position:fixed; top:-25px;left:-25px; z-index:999;
+	height:90px;
+	width:90px;
+	background:#E6F2EC;
+	-moz-border-radius: 50px 50px 50px 50px;
+    -webkit-border-radius: 50px 50px 50px 50px;
+    border-radius: 50%;
+}
+</style>
+<body>
+
+<div id="background"></div>
+<div id="topBlockImg"></div>
+<div id="topBlock">The 13th WWC</br><font color="#6FA0A3">Infovis</font></div>
+<div id="header">
+<div id="linkBlock"><div id="link">
+<a href="file:///C:/Users/Charlie/Downloads/D3/finalProject.html#top">index</a>
+<a href="file:///C:/Users/Charlie/Downloads/D3/countries.html">countries</a>
+<a href="file:///C:/Users/Charlie/Downloads/D3/categories.html">categories</a>
+<a href="file:///C:/Users/Charlie/Downloads/D3/scores.html">scores</a>
+<a href="file:///C:/Users/Charlie/Downloads/D3/athletes.html">athletes</a>
+<a href="file:///C:/Users/Charlie/Downloads/D3/summary.html">summary</a>
+</div></div></div>
+
+<div id="title"><b>Categories</b></div>
+
+<p><span title="ʙᴀᴄᴋ ᴛᴏ ᴛᴏᴘ"><a href="#top" style="position: fixed; bottom: 10px; right: 10px; text-decoration: none; color: #424242; font-size: 20px; z-index: 9999999999;">▲</a></span></p>
+
+
+</body>
+</html>

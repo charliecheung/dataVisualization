@@ -1,0 +1,198 @@
+<!--
+CPSC583 Project 2.3
+
+Charlie Cheung 
+last updated 2016.03.21
+
+13th World Wushu Championship Information Visualization
+
+╰[ ⁰﹏⁰ ]╯
+
+-->
+
+<!DOCTYPE html>
+<meta charset="utf-8">
+<head>
+<!--- F O N T --->
+<link href='https://fonts.googleapis.com/css?family=Muli' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Ovo' rel='stylesheet' type='text/css'>
+<!--- T I T L E --->
+<title>Summary</title>
+
+<!---T A B    I C O N --->
+<link rel="shortcut icon" href="{Favicon}" />
+
+<style type="text/css">
+
+/*------[S T Y L E]------- */
+body {
+	margin: 0px;
+	padding: 0px;	
+}
+::-webkit-scrollbar {
+    width: 9px; height: 3px; background: #fcfcfa;
+}
+::-webkit-scrollbar-thumb {
+    background-color:#6FA0A3;  -webkit-border-radius: 1ex;
+}
+.container {
+    margin:auto; margin-left:200px; width: 150px; height:475px;
+    padding: 10px; text-align: left;
+    position: relative; background: #E6F2EC; overflow:auto;
+	font-family: 'EB Garamond', serif; letter-spacing:1px; color:#424242; 
+}
+.medal {
+	position:absolute;
+	background:#E6F2EC;
+	margin:auto;
+	top:0; left:0;right:0;
+	width:150px; <!--height:970px;-->
+}
+.medalBoxBorder {
+	margin:auto; margin-top:10px; bottom:0; left:0; right:0;
+	width:140px; height:560px;
+	font-family: 'EB Garamond', serif; letter-spacing:1px;
+	text-align:left; padding:5px; color:#424242; 
+}
+.containerTwo {
+    margin:auto; margin-left:650px; width: 150px; height:510px; margin-top:-330px;
+    padding: 0px 10px; text-align: left;
+    position: relative; background: #E6F2EC; overflow:auto;
+	font-family: 'EB Garamond', serif; letter-spacing:1px; color:#424242; 
+}
+#categoryCount {
+	position:absolute; margin-top:-610px; margin-left:405px; 
+	width:200px; height:100px;
+	background:#E6F2EC;
+	font-family: 'EB Garamond', serif; letter-spacing:1px;
+	text-align:center; padding:5px; color:#424242; 
+}
+#highestScore {
+	position:absolute; margin-top:-245px; margin-left:405px; 
+	width:200px; height:130px;
+	background:#E6F2EC;
+	font-family: 'EB Garamond', serif; letter-spacing:1px;
+	text-align:center; padding:5px; color:#424242; 
+}
+#mw {
+	position:absolute; margin-top:-480px; margin-left:405px; 
+	width:200px; height:200px;
+	background:#E6F2EC;
+	font-family: 'EB Garamond', serif; letter-spacing:1px;
+	text-align:center; padding:5px; color:#424242; 
+}
+</style>
+<body>
+
+<div id="wrapper" style="width:100%;">
+
+<section class="container">
+<div id="medal">
+	<div id="medalBoxBorder">
+	<font size="4"><b>Medal Count</b></font></br>
+	<font size="2"><p></p>
+1. CHN <div style="padding:2px;background-color:#fff;line-height:1.4;text-align:right;">
+G:7 S:0 B:0
+</div>
+2. IND <div style="padding:2px;background-color:#fff;line-height:1.4;text-align:right;">
+G:6 S:1 B:4
+</div>
+3. HKG <div style="padding:2px;background-color:#fff;line-height:1.4;text-align:right;">
+G:5 S:4 B:1
+</div>
+4. MAS <div style="padding:2px;background-color:#fff;line-height:1.4;text-align:right;">
+G:3 S:4 B:4
+</div>
+5. RUS <div style="padding:2px;background-color:#fff;line-height:1.4;text-align:right;">
+G:3 S:2 B:2
+</div>
+6. KOR <div style="padding:2px;background-color:#fff;line-height:1.4;text-align:right;">
+G:2 S:2 B:2
+</div>
+7. MAC <div style="padding:2px;background-color:#fff;line-height:1.4;text-align:right;">
+G:2 S:2 B:1
+</div>
+8. SIN <div style="padding:2px;background-color:#fff;line-height:1.4;text-align:right;">
+G:1 S:1 B:2
+</div>
+9. EGY <div style="padding:2px;background-color:#fff;line-height:1.4;text-align:right;">
+G:1 S:0 B:1
+</div>
+10. AUS <div style="padding:2px;background-color:#fff;line-height:1.4;text-align:right;">
+G:1 S:0 B:0
+</div>
+10. BRA <div style="padding:2px;background-color:#fff;line-height:1.4;text-align:right;">
+G:1 S:0 B:0
+</div>
+	</font> 
+	</div>
+</div>
+</section>
+
+</div>
+
+<div id="wrapper" style="width:100%;">
+<section class="containerTwo">
+<div id="medal">
+	<div id="medalBoxBorder">
+	<font size="2"><p></p>
+	12. JPN <div style="padding:2px;background-color:#fff;line-height:1.4;text-align:right;">
+G:0 S:4 B:2
+</div>
+13. IRI <div style="padding:2px;background-color:#fff;line-height:1.4;text-align:right;">
+G:0 S:3 B:0
+</div>
+14. USA <div style="padding:2px;background-color:#fff;line-height:1.4;text-align:right;">
+G:0 S:2 B:4
+</div>
+15. VIE <div style="padding:2px;background-color:#fff;line-height:1.4;text-align:right;">
+G:0 S:2 B:2
+</div>
+16. TPE <div style="padding:2px;background-color:#fff;line-height:1.4;text-align:right;">
+G:0 S:1 B:1
+</div>
+16. TUR <div style="padding:2px;background-color:#fff;line-height:1.4;text-align:right;">
+G:0 S:1 B:1
+</div>
+18. FRA <div style="padding:2px;background-color:#fff;line-height:1.4;text-align:right;">
+G:0 S:1 B:0
+</div>
+18. MYA <div style="padding:2px;background-color:#fff;line-height:1.4;text-align:right;">
+G:0 S:1 B:0
+</div>
+18. PHI <div style="padding:2px;background-color:#fff;line-height:1.4;text-align:right;">
+G:0 S:1 B:0
+</div>
+21. UKR <div style="padding:2px;background-color:#fff;line-height:1.4;text-align:right;">
+G:0 S:0 B:3
+</div>
+22. CAN <div style="padding:2px;background-color:#fff;line-height:1.4;text-align:right;">
+G:0 S:0 B:2
+</div>
+Total <div style="padding:2px;background-color:#fff;line-height:1.4;text-align:right;">
+G:32 S:32 B:32
+</div>
+	</div></div>
+</section>
+</div>
+
+<div id="categoryCount">
+<font size="3"><b>Largest : Smallest</br>Categories</b></font></br><p></p>
+<font size="6"><span title="Men's Changquan">50</span>:<span title="Women's
+Taijiquan">8</span></font>
+</div>
+
+<div id="mw">
+<font size="3"><b>Number of Men & Women</b></font></br><p></p>
+</div>
+
+
+<div id="highestScore">
+<font size="3"><b>Highest Score</b></font></br><p></p>
+<font size="6"><span title="CHN WANG Di [ Men's Nanquan ]">9.73</br></font>
+<font size="3">CHN WANG Di </br>Men's Nanquan </span></font>
+</div>
+
+<p><span title="ʙᴀᴄᴋ ᴛᴏ ᴛᴏᴘ"><a href="#top" style="position: fixed; bottom: 10px; right: 10px; text-decoration: none; color: #424242; font-size: 20px; z-index: 9999999999;">▲</a></span></p>
+</body>
+</html>

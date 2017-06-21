@@ -1,0 +1,1353 @@
+<!DOCTYPE html>
+<html >
+  <head>
+    <meta charset="UTF-8">
+    <title>Countries</title>
+    
+
+<style type="text/css">
+/*------[S T Y L E]------- */
+body { 
+	padding:0px;
+	margin:0px; 
+	background: #FFFFFF; 
+}
+::-webkit-scrollbar {
+    width: 9px; height: 3px; background: #fcfcfa;
+}
+::-webkit-scrollbar-thumb {
+    background-color:#d7d6d7;  -webkit-border-radius: 1ex;
+}
+#header {
+	position:fixed; margin:auto;
+	top:0; left:0; right:0;
+	width:100%; height:100px;
+	background-color:#FFFFFF; opacity:0.9; z-index:9;
+}
+#linkBlock {
+	position: fixed;
+	left:270px; right:0; top:0; 
+	width:85%; height:10%;opacity:0.9; z-index:9;
+}
+#link a {
+	text-decoration: none; text-transform: none;
+	margin: 40px; text-align: center;
+	font-family: 'EB Garamond', serif; letter-spacing:1px;
+	margin-top:10px; font-size:16px; color: #424242;
+	padding: 0px 2px 0px 2px;
+	-webkit-transition: 0.5s ease;
+    transition: 0.5s ease;
+    -moz-transition: 0.5s ease;
+    -o-transition: 0.5s ease;
+	border-bottom-color:#E6F2EC;
+}
+#link a:hover {
+	padding-bottom:5px;
+	border-bottom: 1px solid; border-bottom-color: #6FA0A3;
+	text-transform: none; text-decoration: none;
+}		
+#title {
+	position: fixed; z-index:99;
+	margin: auto;
+	left:0; right:2;
+	top:40px; 
+	text-align:left;
+	padding-left:85px;
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	letter-spacing:2px;
+	margin-top:10px;
+	font-size:32px;
+	color: #424242;
+	line-height:1.5;
+	<!--text-shadow:2px 2px 4px #000000;-->
+}	
+#topBlock {
+	position:fixed;
+	top:0; left:75px;
+	height:50px;
+	z-index:99;
+	font-family: 'EB Garamond', serif; letter-spacing:1px;
+	font-size:14px; color: #424242;
+}
+#topBlockImg {
+	position:fixed; top:-25px;left:-25px; z-index:999;
+	height:90px;
+	width:90px;
+	background:#E6F2EC;
+	-moz-border-radius: 50px 50px 50px 50px;
+    -webkit-border-radius: 50px 50px 50px 50px;
+    border-radius: 50%;
+}	
+.open_popup {
+	position:fixed;
+	z-index:99; width:70px;
+  background:#424242;
+  margin-top:100px; 
+  border:none;
+  padding:5px 10px;
+  color:#fff;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:12px;
+}
+.open_popupTwo {
+	position:fixed;
+	z-index:99; width:70px;
+  background:#424242;
+  margin-top:-350px; left:90px;
+  border:none;
+  padding:5px 10px;
+  color:#fff;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:12px;
+}
+.open_popupTwo:hover {
+	background:#fff;
+	color:#424242;
+	transition: 0.5s ease;
+	-moz-transition: 0.5s ease;
+	-o-transition: 0.5s ease;
+}
+.open_popup:hover {
+	background:#fff;
+	color:#424242;
+	transition: 0.5s ease;
+	-moz-transition: 0.5s ease;
+	-o-transition: 0.5s ease;
+}
+.popup_body{
+  display:none;
+  position:fixed;
+  top:0;left:0;right:0;bottom:0;
+  -webkit-transition: 300ms;
+    -moz-transition: 300ms;
+    -o-transition: 300ms;
+    -ms-transition: 300ms;
+    transition: 300ms;
+}
+.popup_body_show{
+  display:block;
+  -webkit-transition: 300ms;
+    -moz-transition: 300ms;
+    -o-transition: 300ms;
+    -ms-transition: 300ms;
+    transition: 300ms;
+}
+.popup_back{
+  background: rgba(0,0,0,0.4);
+  position: fixed;
+  left:0;right:0;top:0;bottom:0;
+}
+.popup_contain{
+  position:relative;
+  background:#fff;
+  min-width:300px;
+  font-family: 'EB Garamond', serif; color:#424242;
+  max-width:30%;
+  margin:100px auto 50px;
+  min-height:150px;
+  padding: 10px 20px;
+  opacity:0.9;
+}
+.popup_close{
+  background:#6FA0A3;
+  padding:3px 10px 5px;
+  position: absolute;
+  right:-10px;
+  top:-10px;
+  color: #fff;
+  border-radius: 50%;
+}
+canvas { 
+	position:fixed;
+	margin:auto;
+	left:0; right:0;
+	top:55%; bottom:45%;
+	width:90%; height:455px;
+	background: #6FA0A3; 
+    background: -webkit-linear-gradient(#E6F2EC, #6FA0A3); 
+    background: -o-linear-gradient(#E6F2EC, #6FA0A3); 
+    background: -moz-linear-gradient(#E6F2EC, #6FA0A3); 
+    background: linear-gradient(to bottom right, #E6F2EC, #6FA0A3); 
+}
+h1 {
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:16px;
+}
+</style>
+</head>
+<body>
+
+<canvas></canvas>
+    
+        <script>
+	var canvas = document.getElementsByTagName('canvas')[0];
+	canvas.width = 1600;
+canvas.height = 800;
+
+	var gkhead = new Image;
+
+	window.onload = function(){		
+    
+		    var ctx = canvas.getContext('2d');
+		    trackTransforms(ctx);
+		  
+    function redraw(){
+
+          // Clear the entire canvas
+          var p1 = ctx.transformedPoint(0,0);
+          var p2 = ctx.transformedPoint(canvas.width,canvas.height);
+          ctx.clearRect(p1.x,p1.y,p2.x-p1.x,p2.y-p1.y);
+
+          ctx.save();
+          ctx.setTransform(1,0,0,1,0,0);
+          ctx.clearRect(0,0,canvas.width,canvas.height);
+          ctx.restore();
+
+          ctx.drawImage(gkhead,0,0);
+
+        }
+        redraw();
+
+      var lastX=canvas.width/2, lastY=canvas.height/2;
+
+      var dragStart,dragged;
+
+      canvas.addEventListener('mousedown',function(evt){
+          document.body.style.mozUserSelect = document.body.style.webkitUserSelect = document.body.style.userSelect = 'none';
+          lastX = evt.offsetX || (evt.pageX - canvas.offsetLeft);
+          lastY = evt.offsetY || (evt.pageY - canvas.offsetTop);
+          dragStart = ctx.transformedPoint(lastX,lastY);
+          dragged = false;
+      },false);
+
+      canvas.addEventListener('mousemove',function(evt){
+          lastX = evt.offsetX || (evt.pageX - canvas.offsetLeft);
+          lastY = evt.offsetY || (evt.pageY - canvas.offsetTop);
+          dragged = true;
+          if (dragStart){
+            var pt = ctx.transformedPoint(lastX,lastY);
+            ctx.translate(pt.x-dragStart.x,pt.y-dragStart.y);
+            redraw();
+                }
+      },false);
+
+      canvas.addEventListener('mouseup',function(evt){
+          dragStart = null;
+          if (!dragged) zoom(evt.shiftKey ? -1 : 1 );
+      },false);
+
+      var scaleFactor = 1.1;
+
+      var zoom = function(clicks){
+          var pt = ctx.transformedPoint(lastX,lastY);
+          ctx.translate(pt.x,pt.y);
+          var factor = Math.pow(scaleFactor,clicks);
+          ctx.scale(factor,factor);
+          ctx.translate(-pt.x,-pt.y);
+          redraw();
+      }
+
+      var handleScroll = function(evt){
+          var delta = evt.wheelDelta ? evt.wheelDelta/40 : evt.detail ? -evt.detail : 0;
+          if (delta) zoom(delta);
+          return evt.preventDefault() && false;
+      };
+    
+      canvas.addEventListener('DOMMouseScroll',handleScroll,false);
+      canvas.addEventListener('mousewheel',handleScroll,false);
+	};
+
+	gkhead.src = 'http://i65.tinypic.com/2z6zeap.png';
+	
+	// Adds ctx.getTransform() - returns an SVGMatrix
+	// Adds ctx.transformedPoint(x,y) - returns an SVGPoint
+	function trackTransforms(ctx){
+      var svg = document.createElementNS("http://www.w3.org/2000/svg",'svg');
+      var xform = svg.createSVGMatrix();
+      ctx.getTransform = function(){ return xform; };
+
+      var savedTransforms = [];
+      var save = ctx.save;
+      ctx.save = function(){
+          savedTransforms.push(xform.translate(0,0));
+          return save.call(ctx);
+      };
+    
+      var restore = ctx.restore;
+      ctx.restore = function(){
+        xform = savedTransforms.pop();
+        return restore.call(ctx);
+		      };
+
+      var scale = ctx.scale;
+      ctx.scale = function(sx,sy){
+        xform = xform.scaleNonUniform(sx,sy);
+        return scale.call(ctx,sx,sy);
+		      };
+    
+      var rotate = ctx.rotate;
+      ctx.rotate = function(radians){
+          xform = xform.rotate(radians*180/Math.PI);
+          return rotate.call(ctx,radians);
+      };
+    
+      var translate = ctx.translate;
+      ctx.translate = function(dx,dy){
+          xform = xform.translate(dx,dy);
+          return translate.call(ctx,dx,dy);
+      };
+    
+      var transform = ctx.transform;
+      ctx.transform = function(a,b,c,d,e,f){
+          var m2 = svg.createSVGMatrix();
+          m2.a=a; m2.b=b; m2.c=c; m2.d=d; m2.e=e; m2.f=f;
+          xform = xform.multiply(m2);
+          return transform.call(ctx,a,b,c,d,e,f);
+      };
+    
+      var setTransform = ctx.setTransform;
+      ctx.setTransform = function(a,b,c,d,e,f){
+          xform.a = a;
+          xform.b = b;
+          xform.c = c;
+          xform.d = d;
+          xform.e = e;
+          xform.f = f;
+          return setTransform.call(ctx,a,b,c,d,e,f);
+      };
+    
+      var pt  = svg.createSVGPoint();
+      ctx.transformedPoint = function(x,y){
+          pt.x=x; pt.y=y;
+          return pt.matrixTransform(xform.inverse());
+      }
+	}</script>
+  
+<div class="popup_main">
+  <div class="open_popup">Algeria</div>
+  <div class="popup_body">
+    <div class="popup_back"></div>
+      <div class="popup_contain">
+        <div class="popup_close">x</div>
+          <h1>Algeria</h1><b>Medal Count:</b> Gold: 0 | Silver: 0 | Bronze: 0</br>
+		  <p></p>
+		  <b>Athletes</b></br>
+		  [1001] YACINE Boudaoud</br>
+		  [1002] AHMED Bouhamidane</br>
+		  [1003] AMINE Nedjari</br>
+		  [1004] KATIA Mohand Said</br>
+		  [1005] DAHBIA Sekour</br>
+		  <p></p>
+		  <b>Categories:</b></br> WTJJ, WNG, WND, MNG, MND, MGS, MDS
+      </div>
+  </div>
+</div>
+</br>
+<div class="popup_main">
+  <div class="open_popup">Argentina</div>
+  <div class="popup_body">
+    <div class="popup_back"></div>
+      <div class="popup_contain">
+        <div class="popup_close">x</div>
+          <h1>Argentina</h1><b>Medal Count:</b> Gold: 0 | Silver: 0 | Bronze: 0</br>
+		  <p></p>
+		  <b>Athletes</b></br>
+		  [1006] TROZZO Pablo German</br>
+		  <p></p>
+		  <b>Categories:</b></br> MQS, MCQ
+      </div>
+  </div>
+</div>
+</br>
+<div class="popup_main">
+  <div class="open_popup">Armenia</div>
+  <div class="popup_body">
+    <div class="popup_back"></div>
+      <div class="popup_contain">
+        <div class="popup_close">x</div>
+             <h1>Armenia</h1><b>Medal Count:</b> Gold: 0 | Silver: 0 | Bronze: 0</br>
+		  <p></p>
+		  <b>Athletes</b></br>
+		  [1197] YERITSYAN Gevorg</br>
+		  <p></p>
+		  <b>Categories:</b></br> MNQ, MNG, MND
+      </div>
+  </div>
+</div>
+</br>
+<div class="popup_main">
+  <div class="open_popup">Australia</div>
+  <div class="popup_body">
+    <div class="popup_back"></div>
+      <div class="popup_contain">
+        <div class="popup_close">x</div>
+             <h1>Australia</h1><b>Medal Count:</b> Gold: 1 | Silver: 0 | Bronze: 0</br>
+		  <p></p>
+		  <b>Athletes</b></br>
+		  [1017] LIM Joshua</br>
+		  [1018] TAN Melvin</br>
+		  [1019] TAN Reagan</br>
+		  [1020] CHUNG TYN KIONG Shane Cedric</br>
+		  [1021] LIM Elizabeth</br>
+		  [1022] LIM Jessica</br>
+		  <p></p>
+		  <b>Categories:</b></br> WNG, WND, WGS, WDS, MTJJ, MQS, MNG, MND, MJS,
+		  MGS, MDS, MCQ
+      </div>
+  </div>
+</div>
+</br>
+<div class="popup_main">
+  <div class="open_popup">Brazil</div>
+  <div class="popup_body">
+    <div class="popup_back"></div>
+      <div class="popup_contain">
+        <div class="popup_close">x</div>
+           <h1>Brazil</h1><b>Medal Count:</b> Gold: 1 | Silver: 0 | Bronze: 0</br>
+		  <p></p>
+		  <b>Athletes</b></br>
+		  [1027] PORFIRIO DA SILVA Brandon</br>
+		  [1028] NAKATA Henry Yuji</br>
+		  [1029] HOKAMA YAMADA Marcelo Massayuki</br>
+		  [1030] DE OLIVEIRA COUTHINHO Marcio</br>
+		  [1031] KOBAYASHI Maximilian Jokiti</br>
+		  [1032] BERNARDES NETO Roque</br>
+		  [1033] POLASTRI THEREZA Marcela</br>
+		  <p></p>
+		  <b>Categories:</b></br> WNQ, WNG, WND, MTJQ, MTJJ, MNQ, MNG, MJS, MGS, 
+		  MDS, MCQ
+      </div>
+  </div>
+</div>
+</br>
+<div class="popup_main">
+  <div class="open_popup">Canada</div>
+  <div class="popup_body">
+    <div class="popup_back"></div>
+      <div class="popup_contain">
+        <div class="popup_close">x</div>
+             <h1>Canada</h1><b>Medal Count:</b> Gold: 0 | Silver: 0 | Bronze: 2</br>
+		  <p></p>
+		  <b>Athletes</b></br>
+		  [1078] CHEN-LEUNG Jason</br>
+		  [1079] WONG Ka Fai Philip</br>
+		  [1080] KWAN Leslie</br>
+		  [1081] CHEUNG Murray Yiu-chun</br>
+		  [1082] GO Bianca</br>
+		  [1083] CHAN Bryanne Marissa Lai Ming Yee</br>
+		  [1084] LEE Wei Jen</br>
+		  [1085] CAI Winnie Qian Hui</br>
+		  <p></p>
+		  <b>Categories:</b></br> WTJQ, WTJJ, WQS, WJS, WQS, MTJJ, MQS, MNG, MND,
+		  MJS, MCQ
+      </div>
+  </div>
+</div>
+</br>
+<div class="popup_main">
+  <div class="open_popup">Chile</div>
+  <div class="popup_body">
+    <div class="popup_back"></div>
+      <div class="popup_contain">
+        <div class="popup_close">x</div>
+             <h1>Chile</h1><b>Medal Count:</b> Gold: 0 | Silver: 0 | Bronze: 0</br>
+		  <p></p>
+		  <b>Athletes</b></br>
+		  [1240] MANCILLA BARRIENTOS Ariel</br>
+		  [1241] TOLEDO TOLEDO Hector Miguel</br>
+		  <p></p>
+		  <b>Categories:</b></br> MGS, MDS, MCQ
+      </div>
+  </div>
+</div>
+</br>
+<div class="popup_main">
+  <div class="open_popup">China</div>
+  <div class="popup_body">
+    <div class="popup_back"></div>
+      <div class="popup_contain">
+        <div class="popup_close">x</div>
+            <h1>China</h1><b>Medal Count:</b> Gold: 6 | Silver: 0 | Bronze: 0</br>
+		  <p></p>
+		  <b>Athletes</b></br>
+		  [1242] WANG Di</br>
+		  [1243] MA Jian Chao</br>
+		  [1245] SUN Pei Yuan</br>
+		  [1247] CHEN Zhou Li</br>
+		  [1248] WEI Hai Ling</br>
+		  [1249] LAI Xiao Xiao</br>
+		  <p></p>
+		  <b>Categories:</b></br> WQS, WNQ, WND, WJS, MTJQ, MTJJ, MNQ, MNG, MDS, MCQ
+      </div>
+  </div>
+</div>
+</br>
+<div class="popup_main">
+  <div class="open_popup">Egypt</div>
+  <div class="popup_body">
+    <div class="popup_back"></div>
+      <div class="popup_contain">
+        <div class="popup_close">x</div>
+            <h1>Egypt</h1><b>Medal Count:</b> Gold: 1 | Silver: 0 | Bronze: 0</br>
+		  <p></p>
+		  <b>Athletes</b></br>
+		  [1009] IBRAHIM Eslam</br>
+		  [1010] ABDELRAHMAN Mohamed</br>
+		  [1012] GHANEM Mohamed</br>
+		  [1013] ALKHATIB Angi</br>
+		  [1015] AHMED Salma</br>
+		  <p></p>
+		  <b>Categories:</b></br> WTJJ, WNG, WND, MTJJ, MNQ, MNG, MND
+      </div>
+  </div>
+</div>
+</br>
+<div class="popup_main">
+  <div class="open_popup">France</div>
+  <div class="popup_body">
+    <div class="popup_back"></div>
+      <div class="popup_contain">
+        <div class="popup_close">x</div>
+             <h1>France</h1><b>Medal Count:</b> Gold: 0 | Silver: 1 | Bronze: 0</br>
+		  <p></p>
+		  <b>Athletes</b></br>
+		  [1049] BENOUAICH Leo</br>
+		  [1050] FRANKINET Maxime</br>
+		  [1051] OURSEL Nicolas</br>
+		  [1052] RONDEAU Paul</br>
+		  [1053] VAUCHEZ Juliette</br>
+		  [1054] FAURE Marina</br>
+		  <p></p>
+		  <b>Categories:</b></br> WQS, WJS, MQS, MNQ, MJS, MGS, MDS, MCQ 
+      </div>
+  </div>
+</div>
+</br>
+<div class="popup_main">
+  <div class="open_popup">Gabon</div>
+  <div class="popup_body">
+    <div class="popup_back"></div>
+      <div class="popup_contain">
+        <div class="popup_close">x</div>
+            <h1>Gabon</h1><b>Medal Count:</b> Gold: 0 | Silver: 0 | Bronze: 0</br>
+		  <p></p>
+		  <b>Athletes</b></br>
+		  [1087] STEPHANE Engone</br>
+		  [1088] CLAUDE LIONEL Mpashy</br>
+		  [1089] GLENN-RIENK Nzengue Boukanguo</br>
+		  <p></p>
+		  <b>Categories:</b></br> MNQ, MNG, MND, MGS, MDS 
+      </div>
+  </div>
+</div>
+</br>
+<div class="popup_main">
+  <div class="open_popup">Great Britain</div>
+  <div class="popup_body">
+    <div class="popup_back"></div>
+      <div class="popup_contain">
+        <div class="popup_close">x</div>
+             <h1>Great Britain</h1><b>Medal Count:</b> Gold: 0 | Silver: 0 | Bronze: 0</br>
+		  <p></p>
+		  <b>Athletes</b></br>
+		  [1228] FILMER Curtis</br>
+		  [1229] MAK Sam</br>
+		  [1230] COLEMAN Steve</br>
+		  <p></p>
+		  <b>Categories:</b></br> MJS, MGS, MDS, MCQ 
+      </div>
+  </div>
+</div>
+</br>
+<div class="popup_main">
+  <div class="open_popup">Germany</div>
+  <div class="popup_body">
+    <div class="popup_back"></div>
+      <div class="popup_contain">
+        <div class="popup_close">x</div>
+             <h1>Germany</h1><b>Medal Count:</b> Gold: 0 | Silver: 0 | Bronze: 0</br>
+		  <p></p>
+		  <b>Athletes</b></br>
+		  [1035] HUYNH Christoph</br>
+		  [1036] TOEROEK David</br>
+		  [1037] SYCHLA Matthieu</br>
+		  [1038] WIDJAJA Maximilian</br>
+		  [1039] HACIKOGLU Thomas</br>
+		  <p></p>
+		  <b>Categories:</b></br> MQS, MNQ, MNG, MGS, MDS, MCQ 
+      </div>
+  </div>
+</div>
+</br>
+<div class="popup_main">
+  <div class="open_popup">Hong Kong</div>
+  <div class="popup_body">
+    <div class="popup_back"></div>
+      <div class="popup_contain">
+        <div class="popup_close">x</div>
+             <h1>Hong Kong</h1><b>Medal Count:</b> Gold: 5 | Silver: 4 | Bronze: 1</br>
+		  <p></p>
+		  <b>Athletes</b></br>
+		  [1258] LEUNG Cheuk Hei</br>
+		  [1259] ZHUANG Jiahong</br>
+		  [1260] HUI Tak Yan Samuei</br>
+		  [1261] YUEN Ka Ying</br>
+		  [1262] CHEN Sujin</br>
+		  [1263] ZHENG Tianhui</br>
+		  [1264] GENG Xiaoling</br>
+		  [1265] LIU Xuxu</br>
+		  <p></p>
+		  <b>Categories:</b></br> WTJQ, WTJJ, WNQ, WNG, WND, WJS, WGS, WDS, WCQ,
+		  MTJQ, MTJJ, MNQ, MNG, MND
+      </div>
+  </div>
+</div>
+</br>
+<div class="popup_main">
+  <div class="open_popup">Hungary</div>
+  <div class="popup_body">
+    <div class="popup_back"></div>
+      <div class="popup_contain">
+        <div class="popup_close">x</div>
+             <h1>Hungary</h1><b>Medal Count:</b> Gold: 0 | Silver: 0 | Bronze: 0</br>
+		  <p></p>
+		  <b>Athletes</b></br>
+		  [1196] KOVER Kristof</br>
+		  <p></p>
+		  <b>Categories:</b></br> MCQ
+      </div>
+  </div>
+</div>
+</br>
+<div class="popup_main">
+  <div class="open_popup">Indonesia</div>
+  <div class="popup_body">
+    <div class="popup_back"></div>
+      <div class="popup_contain">
+        <div class="popup_close">x</div>
+             <h1>Indonesia</h1><b>Medal Count:</b> Gold: 6 | Silver: 1 | Bronze: 4</br>
+		  <p></p>
+		  <b>Athletes</b></br>
+		  [1220] HULAEFI Achmad</br>
+		  [1221] SUTANTO Charles</br>
+		  [1222] FREDY Fredy</br>
+		  [1223] HORATIUS Harris</br>
+		  [1224] KURNIAWAN Julius Yoga</br>
+		  [1225] IRMANTO Ivana Ardelia</br>
+		  [1226] WASNI Juwita Niza</br>
+		  [1227] LINDSWELL Lindswell</br>
+		  <p></p>
+		  <b>Categories:</b></br> WTJQ, WTJJ, WNQ, WNG, WND, MTJQ, MTJJ, MQS, MNQ,
+		  MNQ, MNG, MND, MJS, MDS, MCQ
+      </div>
+  </div>
+</div>
+</br>
+<div class="popup_main">
+  <div class="open_popup">India</div>
+  <div class="popup_body">
+    <div class="popup_back"></div>
+      <div class="popup_contain">
+        <div class="popup_close">x</div>
+             <h1>India</h1><b>Medal Count:</b> Gold: 0 | Silver: 0 | Bronze: 0</br>
+		  <p></p>
+		  <b>Athletes</b></br>
+		  [1214] NAMDEO Anjul</br>
+		  [1215] SHARMA Chirag</br>
+		  [1216] MAYANGLAMBAM Gyandash Singh</br>
+		  [1217] MAYANGLAMBAM Punshiva Meitei</br>
+		  [1218] CHANU LEIMAPOKPAM Sanatombi Chanu</br>
+		  [1219] YUMLEMBAM Sapna Devi</br>
+		  <p></p>
+		  <b>Categories:</b></br> WTJQ, WTJJ, WJS, WCQ, MTJQ, MTJJ, MQS, MNQ, MNG,
+		  MDS, MCQ
+      </div>
+  </div>
+</div>
+</br>
+<div class="popup_main">
+  <div class="open_popup">Iran</div>
+  <div class="popup_body">
+    <div class="popup_back"></div>
+      <div class="popup_contain">
+        <div class="popup_close">x</div>
+             <h1>Iran</h1><b>Medal Count:</b> Gold: 0 | Silver: 3 | Bronze: 0</br>
+		  <p></p>
+		  <b>Athletes</b></br>
+		  [1199] ARABI Farshad</br>
+		  [1202] KHALAF ZADEH Reza</br>
+		  [1203] GHASEMI Taher</br>
+		  [1204] RAJABI Hanieh</br>
+		  [1205] KIANI Zahra
+		  <p></p>
+		  <b>Categories:</b></br> WQS, WJS, WGS, WDS, WCQ, MQS, MNQ, MNG, MND, MJS
+      </div>
+  </div>
+</div>
+</br>
+<div class="popup_main">
+  <div class="open_popup">Italy</div>
+  <div class="popup_body">
+    <div class="popup_back"></div>
+      <div class="popup_contain">
+        <div class="popup_close">x</div>
+             <h1>Italy</h1><b>Medal Count:</b> Gold: 0 | Silver: 0 | Bronze: 0</br>
+		  <p></p>
+		  <b>Athletes</b></br>
+		  [1206] GALLO Arturo</br>
+		  [1207] DEMARIA Davide</br>
+		  [1208] GIORDANO Domenico</br>
+		  [1209] DEMARIA Mattia</br>
+		  [1210] GIORDANO Michele</br>
+		  [1211] MANGIANTE Simone</br>
+		  [1222] PALMA Roberta</br>
+		  [1223] DELLA VEDOVA Sofia</br>
+		  <p></p>
+		  <b>Categories:</b></br> WJS, WDS, WCQ, MTJJ, MQS, MNQ, MNG, MND, MJS, MGS, MDS, MCQ
+      </div>
+  </div>
+</div>
+</br>
+<div class="popup_main">
+  <div class="open_popup">Japan</div>
+  <div class="popup_body">
+    <div class="popup_back"></div>
+      <div class="popup_contain">
+        <div class="popup_close">x</div>
+             <h1>Japan</h1><b>Medal Count:</b> Gold: 0 | Silver: 4 | Bronze: 2</br>
+		  <p></p>
+		  <b>Athletes</b></br>
+		  [1135] ICHIKIZAKI Daisuke</br>
+		  [1136] MOURI Ryouta</br>
+		  [1137] ARAYA Tomohiro</br>
+		  [1138] OKAWA Tomoya</br>
+		  [1139] HONDA Ayaka</br>
+		  [1140] KOJIMA Erika</br>
+		  [1141] ICHIKIZAKI Naoko</br>
+		  [1142] SAITO Shiho</br>
+		  <p></p>
+		  <b>Categories:</b></br> WTJQ, WTJJ, WQS, WNQ, WNG, WND, WJS, WCQ,
+		  MTJQ, MTJJ, MQS, MNQ, MNG, MND, MJS, MGS, MDS, MCQ
+      </div>
+  </div>
+</div>
+</br>
+<div class="popup_main">
+  <div class="open_popup">Kazakhstan</div>
+  <div class="popup_body">
+    <div class="popup_back"></div>
+      <div class="popup_contain">
+        <div class="popup_close">x</div>
+             <h1>Kazakhstan</h1><b>Medal Count:</b> Gold: 0 | Silver: 0 | Bronze: 0</br>
+		  <p></p>
+		  <b>Athletes</b></br>
+		  [1060] PINCHUK Artem</br>
+		  [1061] YEDILBAYEV Askarbay</br>
+		  [1062] GALIAKAROV Kamil</br>
+		  [1064] SANATKYZY Anel</br>
+		  [1065] UTYAMYSHEVA Dayana</br>
+		  <p></p>
+		  <b>Categories:</b></br> WTJJ, WNG, WND, MTJJ, MQS, MJS
+      </div>
+  </div>
+</div>
+</br>
+<div class="popup_main">
+  <div class="open_popup">Korea</div>
+  <div class="popup_body">
+    <div class="popup_back"></div>
+      <div class="popup_contain">
+        <div class="popup_close">x</div>
+             <h1>Korea</h1><b>Medal Count:</b> Gold: 2 | Silver: 2 | Bronze: 2</br>
+		  <p></p>
+		  <b>Athletes</b></br>
+		  [1067] LEE Hasung</br>
+		  [1068] CHO Seungjae</br>
+		  [1069] YU Wonhee</br>
+		  [1070] LEE Yonghyun </br>
+		  [1071] LEE Yongmun</br>
+		  [1072] JE Gayeong</br>
+		  [1073] SEO Heeju</br>
+		  [1074] PARK Minhee</br>
+		  <p></p>
+		  <b>Categories:</b></br> WTJJ, WQS, WJS, WCQ, MTJQ, MTJJ, MNG,
+		  MND, MJS, MGS, MDS, MCQ
+      </div>
+  </div>
+</div>
+</br>
+<div class="popup_main">
+  <div class="open_popup">Libya</div>
+  <div class="popup_body">
+    <div class="popup_back"></div>
+      <div class="popup_contain">
+        <div class="popup_close">x</div>
+             <h1>Libya</h1><b>Medal Count:</b> Gold: 0 | Silver: 0 | Bronze: 0</br>
+		  <p></p>
+		  <b>Athletes</b></br>
+		  [1092] MANDJIAN Avo Mirad</br>
+		  [1093] MAZAEFF Hugo Jean-Claude Hubert</br>
+		  [1094] ABI ABDALLAH Nabil</br>
+		  [1095] EL RASSI Barbara</br>
+		  [1096] AOUN Corry-Jane</br>
+		  [1097] NSEIR Patricia</br>
+		  <p></p>
+		  <b>Categories:</b></br> WTJJ, WQS, WNQ, WND, WJS, WCQ, MQS, MNQ, MNG, 
+		  MND, MJS, MGS, MDS, MCQ
+      </div>
+  </div>
+</div>
+</br>
+<div class="popup_main">
+  <div class="open_popup">Macau</div>
+  <div class="popup_body">
+    <div class="popup_back"></div>
+      <div class="popup_contain">
+        <div class="popup_close">x</div>
+             <h1>Macau</h1><b>Medal Count:</b> Gold: 2 | Silver: 2| Bronze: 1</br>
+		  <p></p>
+		  <b>Athletes</b></br>
+		  [1250] SONG Chi Kuan</br>
+		  [1251] HUANG Jun Hua</br>
+		  [1252] CHONG Ka Seng</br>
+		  [1253] WU Nok In</br>
+		  [1254] CHEONG Pui Seng</br>
+		  [1255] CHIO Wai Keong</br>
+		  [1256] SOU Cho Man</br>
+		  [1257] LI Yi</br>
+		  <p></p>
+		  <b>Categories:</b></br> WQS, WJS, WGS, WDS, WCQ, MTJQ, MTJJ, MQS, MNG,
+		  MND, MJS, MDS, MCQ
+      </div>
+  </div>
+</div>
+</br>
+<div class="popup_main">
+  <div class="open_popup">Morocco</div>
+  <div class="popup_body">
+    <div class="popup_back"></div>
+      <div class="popup_contain">
+        <div class="popup_close">x</div>
+             <h1>Morocco</h1><b>Medal Count:</b> Gold: 0 | Silver: 0 | Bronze: 0</br>
+		  <p></p>
+		  <b>Athletes</b></br>
+		  [1119] BENGADARI Mhamed</br>
+		  [1120] REGRAGUI Mhamed</br>
+		  [1121] EL AJHORY Mohmaed Harriza</br>
+		  <p></p>
+		  <b>Categories:</b></br> MNQ, MNG, MND, MDS
+      </div>
+  </div>
+</div>
+</br>
+<div class="popup_main">
+  <div class="open_popupTwo">Malaysia</div>
+  <div class="popup_body">
+    <div class="popup_back"></div>
+      <div class="popup_contain">
+        <div class="popup_close">x</div>
+             <h1>Malaysia</h1><b>Medal Count:</b> Gold: 3 | Silver: 4 | Bronze: 4</br>
+		  <p></p>
+		  <b>Athletes</b></br>
+		  [1099] LOH Jack Chang</br>
+		  [1100] HO Mun Hua</br>
+		  [1101] WONG Weng Son</br>
+		  [1102] PHOON Eyin</br>
+		  [1103] CHAI Fong Wei</br>
+		  [1104] CHAN Lu Yi</br>
+		  [1105] YII NG Shin Yii</br>
+		  [1106] BONG Siong Lin Diana</br>
+		  <p></p>
+		  <b>Categories:</b></br> WTJQ, WTJJ, WQS, WNQ, WNG, WND, WJS, WGS, WDS, WCQ,
+		  MTJJ, MQS, MNQ, MNG, MND, MJS
+      </div>
+  </div>
+</div>
+</br>
+<div class="popup_main">
+  <div class="open_popupTwo">Mexico</div>
+  <div class="popup_body">
+    <div class="popup_back"></div>
+      <div class="popup_contain">
+        <div class="popup_close">x</div>
+             <h1>Mexico</h1><b>Medal Count:</b> Gold: 0 | Silver: 0 | Bronze: 0</br>
+		  <p></p>
+		  <b>Athletes</b></br>
+		  [1122] NARVAEZ GOMEZ Daniel</br>
+		  [1123] AVINA MENDEZ Ivan</br>
+		  [1124] GOMEZ PEREZ Juan Carlos</br>
+		  [1125] ALVAREZ ROSA Luis Felipe</br>
+		  <p></p>
+		  <b>Categories:</b></br> MQS, MJS, MGS, MDS, MCQ
+      </div>
+  </div>
+</div>
+</br>
+<div class="popup_main">
+  <div class="open_popupTwo">Myanmar</div>
+  <div class="popup_body">
+    <div class="popup_back"></div>
+      <div class="popup_contain">
+        <div class="popup_close">x</div>
+             <h1>Myanmar</h1><b>Medal Count:</b> Gold: 0 | Silver: 1 | Bronze: 0</br>
+		  <p></p>
+		  <b>Athletes</b></br>
+		  [1115] KO KO Nyein Chan</br>
+		  [1116] OO Thein Than</br>
+		  [1117] WAI PHYO Myat Thet Hsu</br>
+		  [1118] OO Sandi</br>
+		  <p></p>
+		  <b>Categories:</b></br> WQS, WJS, WCCQ, MTJJ, MNG, MND
+      </div>
+  </div>
+</div>
+</br>
+<div class="popup_main">
+  <div class="open_popupTwo">Netherlands</div>
+  <div class="popup_body">
+    <div class="popup_back"></div>
+      <div class="popup_contain">
+        <div class="popup_close">x</div>
+             <h1>Netherlands</h1><b>Medal Count:</b> Gold: 0 | Silver: 0 | Bronze: 0</br>
+		  <p></p>
+		  <b>Athletes</b></br>
+		  [1075] GERAEDTA Arlain</br>
+		  [1076] TANG Shaobo</br>
+		  [1077] SASTROWIARDJO Tim</br>
+		  <p></p>
+		  <b>Categories:</b></br> MTJJ, MNG, MND
+      </div>
+  </div>
+</div>
+</br>
+<div class="popup_main">
+  <div class="open_popupTwo">Nepal</div>
+  <div class="popup_body">
+    <div class="popup_back"></div>
+      <div class="popup_contain">
+        <div class="popup_close">x</div>
+             <h1>Nepal</h1><b>Medal Count:</b> Gold: 0 | Silver: 0 | Bronze: 0</br>
+		  <p></p>
+		  <b>Athletes</b></br>
+		  [1126] RAI Sabita</br>
+		  <p></p>
+		  <b>Categories:</b></br> WTJQ, WTJJ
+      </div>
+  </div>
+</div>
+</br>
+<div class="popup_main">
+  <div class="open_popupTwo">Nigeria</div>
+  <div class="popup_body">
+    <div class="popup_back"></div>
+      <div class="popup_contain">
+        <div class="popup_close">x</div>
+             <h1>Nigeria</h1><b>Medal Count:</b> Gold: 0 | Silver: 0 | Bronze: 0</br>
+		  <p></p>
+		  <b>Athletes</b></br>
+		  [1127] OGBU Emmanuel</br>
+		  [1128] NNADI Friday</br>
+		  [1129] HENRY Hendrix Nosasun</br>
+		  [1130] OTU Inyang Patrick</br>
+		  [1131] UMORU Nasiru Mohammed</br>
+		  <p></p>
+		  <b>Categories:</b></br> MTJQ, MTJJ, MQS, MNQ, MNG, MND, MJS, MGS, MDS
+      </div>
+  </div>
+</div>
+</br>
+<div class="popup_main">
+  <div class="open_popupTwo">Philippines</div>
+  <div class="popup_body">
+    <div class="popup_back"></div>
+      <div class="popup_contain">
+        <div class="popup_close">x</div>
+             <h1>Philippines</h1><b>Medal Count:</b> Gold: 0 | Silver: 1 | Bronze: 0</br>
+		  <p></p>
+		  <b>Athletes</b></br>
+		  [1056] SAYAN Thomton Quieney Lou</br>
+		  [1057] WONG Agatha Chrystenzen Fernandez</br>
+		  <p></p>
+		  <b>Categories:</b></br> WTJJ, MNQ, MNG
+      </div>
+  </div>
+</div>
+</br>
+<div class="popup_main">
+  <div class="open_popupTwo">Palestine</div>
+  <div class="popup_body">
+    <div class="popup_back"></div>
+      <div class="popup_contain">
+        <div class="popup_close">x</div>
+             <h1>Palestine</h1><b>Medal Count:</b> Gold: 0 | Silver: 0 | Bronze: 0</br>
+		  <p></p>
+		  <b>Athletes</b></br>
+		  [1024] SALEH Mohammed</br>
+		  [1025] GHANEM Tawfiq</br>
+		  <p></p>
+		  <b>Categories:</b></br> MTJQ, MTJJ, MNG, MND, MGS
+      </div>
+  </div>
+</div>
+</br>
+<div class="popup_main">
+  <div class="open_popupTwo">Portugal</div>
+  <div class="popup_body">
+    <div class="popup_back"></div>
+      <div class="popup_contain">
+        <div class="popup_close">x</div>
+             <h1>Portugal</h1><b>Medal Count:</b> Gold: 0 | Silver: 0 | Bronze: 0</br>
+		  <p></p>
+		  <b>Athletes</b></br>
+		  [1133] DA SILVA RAMOS Jorge Filipe</br>
+		  [1134] COSTA TORRES Rodolfo</br>
+		  <p></p>
+		  <b>Categories:</b></br> MNQ, MND, MGS, MDS, MCQ
+      </div>
+  </div>
+</div>
+</br>
+<div class="popup_main">
+  <div class="open_popupTwo">Romania</div>
+  <div class="popup_body">
+    <div class="popup_back"></div>
+      <div class="popup_contain">
+        <div class="popup_close">x</div>
+             <h1>Romania</h1><b>Medal Count:</b> Gold: 0 | Silver: 0 | Bronze: 0</br>
+		  <p></p>
+		  <b>Athletes</b></br>
+		  [1098] IOANA Mihai</br>
+		  <p></p>
+		  <b>Categories:</b></br> MND
+  </div>
+</div>
+</br>
+<div class="popup_main">
+  <div class="open_popupTwo">Russia</div>
+  <div class="popup_body">
+    <div class="popup_back"></div>
+      <div class="popup_contain">
+        <div class="popup_close">x</div>
+             <h1>Russia</h1><b>Medal Count:</b> Gold: 3 | Silver: 2 | Bronze: 2</br>
+		  <p></p>
+		  <b>Athletes</b></br>
+		  [1040] SOLOVEV Andrei</br>
+		  [1041] BINAT Ilia</br>
+		  [1043] KRASNOBAEV Ivan</br>
+		  [1044] MURATOV Pavel</br>
+		  [1045] MAKSIMOV Vladimir</br>
+		  [1046] TARASOVA Daria</br>
+		  [1047] KONSTANTINOVA Sandra</br>
+		  [1048] IVSHINA Tatiana</br>
+		  <p></p>
+		  <b>Categories:</b></br> WNQ, WNG, WND, WGS, WDS, MTJQ, MTJJ, MQS, MJS,
+		  MGS, MDS, MCQ
+      </div>
+  </div>
+</div>
+</br>
+<div class="popup_main">
+  <div class="open_popupTwo">Singapore</div>
+  <div class="popup_body">
+    <div class="popup_back"></div>
+      <div class="popup_contain">
+        <div class="popup_close">x</div>
+             <h1>Singapore</h1><b>Medal Count:</b> Gold: 1 | Silver: 1 | Bronze: 2</br>
+		  <p></p>
+		  <b>Athletes</b></br>
+		  [1190] ADALIA Jesse Colin</br>
+		  [1191] FUNG Jin Jie</br>
+		  [1193] YONG Yi Xiang</br>
+		  [1194] HO Lin Ying</br>
+		  [1195] TAN Yan Ning Vera</br>
+		  <p></p>
+		  <b>Categories:</b></br> WTJJ, MQS, MJS, MGS, MDS, MCQ
+      </div>
+  </div>
+</div>
+</br>
+<div class="popup_main">
+  <div class="open_popupTwo">Spain</div>
+  <div class="popup_body">
+    <div class="popup_back"></div>
+      <div class="popup_contain">
+        <div class="popup_close">x</div>
+             <h1>Spain</h1><b>Medal Count:</b> Gold: 0 | Silver: 0 | Bronze: 0</br>
+		  <p></p>
+		  <b>Athletes</b></br>
+		  [1180] RIO RODRIGUEZ Dan</br>
+		  [1181] GAGO TROITINO Ezequiel</br>
+		  [1182] GARCIA MAZUECOS Francisco</br>
+		  [1183] FERREIRA COLMENERO Jose Manuel</br>
+		  [1184] SANCHEZ MARTINEZ Mario</br>
+		  [1185] MORALES RETAMERO Raul Miguel</br>
+		  [1186] RUS SALAMANCA Sergio</br>
+		  [1187] BONET REIRA Rosario</br>
+		  <p></p>
+		  <b>Categories:</b></br> WQS, WJS, WCQ, MTJQ, MTJJ, MQS, MNQ, MNG, MND
+		  MJS, MGS, MDS, MCQ
+      </div>
+  </div>
+</div>
+</br>
+<div class="popup_main">
+  <div class="open_popupTwo">Sri Lanka</div>
+  <div class="popup_body">
+    <div class="popup_back"></div>
+      <div class="popup_contain">
+        <div class="popup_close">x</div>
+             <h1>Sri Lanka</h1><b>Medal Count:</b> Gold: 0 | Silver: 0 | Bronze: 0</br>
+		  <p></p>
+		  <b>Athletes</b></br>
+		  [1147] DISANAYAKA MUDIYANSELAGE Gasuja Cganeera Bandara</br>
+		  [1148] PURANA LIYANAGE Hasitha Lakshan</br>
+		  [1149] ABEWICKRAMAGE Malinda Prema Kumara</br>
+		  [1150] HELLARAWA MUDIYANSELAGE Prabhath Manuranga</br>
+		  <p></p>
+		  <b>Categories:</b></br> MTJQ, MTJJ, MND, MGS, MDS, MCQ
+      </div>
+  </div>
+</div>
+</br>
+<div class="popup_main">
+  <div class="open_popupTwo">Switzerland</div>
+  <div class="popup_body">
+    <div class="popup_back"></div>
+      <div class="popup_contain">
+        <div class="popup_close">x</div>
+             <h1>Switzerland</h1><b>Medal Count:</b> Gold: 0 | Silver: 0 | Bronze: 0</br>
+		  <p></p>
+		  <b>Athletes</b></br>
+		  [1143] CAMPANILE Flavio</br>
+		  [1144] KEO Jehmsei</br>
+		  [1145] BEN MAHMOUD Sami</br>
+		  [1146] BEUGGERT Rebecca</br>
+		  <p></p>
+		  <b>Categories:</b></br> WGS, WDS, WCQ, MQS, MNQ, MNG, MND, MJS, MGS,
+		  MDS, MCQ
+      </div>
+  </div>
+</div>
+</br>
+<div class="popup_main">
+  <div class="open_popupTwo">Slovakia</div>
+  <div class="popup_body">
+    <div class="popup_back"></div>
+      <div class="popup_contain">
+        <div class="popup_close">x</div>
+             <h1>Slovakia</h1><b>Medal Count:</b> Gold: 0 | Silver: 0 | Bronze: 0</br>
+		  <p></p>
+		  <b>Athletes</b></br>
+		  [1151] HLAVATY Peter</br>
+		  <p></p>
+		  <b>Categories:</b></br> MJS
+      </div>
+  </div>
+</div>
+</br>
+<div class="popup_main">
+  <div class="open_popupTwo">Thailand</div>
+  <div class="popup_body">
+    <div class="popup_back"></div>
+      <div class="popup_contain">
+        <div class="popup_close">x</div>
+             <h1>Thailand</h1><b>Medal Count:</b> Gold: 0 | Silver: 0 | Bronze: 0</br>
+		  <p></p>
+		  <b>Athletes</b></br>
+		  [1153] SAELEE Jo</br>
+		  [1154] THUKJAI Pichet</br>
+		  [1155] YANGRUNGRAWIN Pitaya</br>
+		  [1156] YANGRUNGRAWIN Sujinda</br>
+		  <p></p>
+		  <b>Categories:</b></br> MTJQ, MTJJ, MNQ, MNG, MND, MGS, MDS, MCQ
+      </div>
+  </div>
+</div>
+</br>
+<div class="popup_main">
+  <div class="open_popupTwo">Taiwan</div>
+  <div class="popup_body">
+    <div class="popup_back"></div>
+      <div class="popup_contain">
+        <div class="popup_close">x</div>
+             <h1>Taiwan</h1><b>Medal Count:</b> Gold: 0 | Silver: 1 | Bronze: 1</br>
+		  <p></p>
+		  <b>Athletes</b></br>
+		  [1266] WANG Chen Ming</br>
+		  [1267] CHEN Min Jie</br>
+		  [1268] LAI Po Wei</br>
+		  [1269] CHEN Yu Wei
+		  <p></p>
+		  <b>Categories:</b></br> MTJQ, MTJJ, MNQ, MNG, MND, MGS, MDS, MCQ
+      </div>
+  </div>
+</div>
+</br>
+<div class="popup_main">
+  <div class="open_popupTwo">Tunisia</div>
+  <div class="popup_body">
+    <div class="popup_back"></div>
+      <div class="popup_contain">
+        <div class="popup_close">x</div>
+             <h1>Tunisia</h1><b>Medal Count:</b> Gold: 0 | Silver: 0 | Bronze: 0</br>
+		  <p></p>
+		  <b>Athletes</b></br>
+		  [1158] SMAALI Noureddine</br>
+		  [1159] AYADI Mayssa</br>
+		  <p></p>
+		  <b>Categories:</b></br> WNQ, WNG, MND, MNG, MND
+      </div>
+  </div>
+</div>
+</br>
+<div class="popup_main">
+  <div class="open_popupTwo">Turkey</div>
+  <div class="popup_body">
+    <div class="popup_back"></div>
+      <div class="popup_contain">
+        <div class="popup_close">x</div>
+             <h1>Turkey</h1><b>Medal Count:</b> Gold: 0 | Silver: 1 | Bronze: 1</br>
+		  <p></p>
+		  <b>Athletes</b></br>
+		  [1160] KALAYCI Halil</br>
+		  [1162] EREZ Sefa</br>
+		  [1163] AKYUZ Elif</br>
+		  [1164] EMEN Ilayda</br>
+		  [1165] URHAN Seyma</br>
+		  <p></p>
+		  <b>Categories:</b></br> WQS, WJS, WGS, WDS, MNG, MND, MJS, MGS, MDS
+      </div>
+  </div>
+</div>
+</br>
+<div class="popup_main">
+  <div class="open_popupTwo">Ukraine</div>
+  <div class="popup_body">
+    <div class="popup_back"></div>
+      <div class="popup_contain">
+        <div class="popup_close">x</div>
+             <h1>Ukraine</h1><b>Medal Count:</b> Gold: 0 | Silver: 0 | Bronze: 3</br>
+		  <p></p>
+		  <b>Athletes</b></br>
+		  [1167] FEHETSYN Andrii</br>
+		  [1168] KOVAL Andrii</br>
+		  [1169] KOLIESNIKOV Dmyto</br>
+		  [1170] PANASIUK Dmyto</br>
+		  [1171] REVA Roman</br>
+		  [1172] TERESHCHENKO Ganna</br>
+		  [1173] TEMNA Liudmyia</br>
+		  [1174] KONDRATYEVA Tetyana</br>
+		  <p></p>
+		  <b>Categories:</b></br> WJS, WGS, WDS, WCQ, MQS, MNQ, MND, MJS, MGS, 
+		  MDS
+      </div>
+  </div>
+</div>
+</br>
+<div class="popup_main">
+  <div class="open_popupTwo">USA</div>
+  <div class="popup_body">
+    <div class="popup_back"></div>
+      <div class="popup_contain">
+        <div class="popup_close">x</div>
+             <h1>USA</h1><b>Medal Count:</b> Gold: 0 | Silver: 2 | Bronze: 4</br>
+		  <p></p>
+		  <b>Athletes</b></br>
+		  [1107] CHOW Dominic Hoyan</br>
+		  [1108] TSAI Gordon</br>
+		  [1109] BENEDIK Justin</br>
+		  [1110] HUIE Wesley Hawkeen</br>
+		  [1111] LI Amy</br>
+		  [1112] FAN Emily Xinyu</br>
+		  [1113] LEE Lucy Ruxi</br>
+		  [1114] LIM Stephanie</br>
+		  <p></p>
+		  <b>Categories:</b></br> WQS, WNG, WND, WJS, WGS, WDS, WCQ, MQS, MJS, 
+		  MGS, MDS, MCQ
+      </div>
+  </div>
+</div>
+</br>
+<div class="popup_main">
+  <div class="open_popupTwo">Uzbekistan</div>
+  <div class="popup_body">
+    <div class="popup_back"></div>
+      <div class="popup_contain">
+        <div class="popup_close">x</div>
+             <h1>Uzbekistan</h1><b>Medal Count:</b> Gold: 0 | Silver: 0 | Bronze: 0</br>
+		  <p></p>
+		  <b>Athletes</b></br>
+		  [1176] BAKHODIROV Maksudbek</br>
+		  [1177] O G LI KHASANOV Nodie Baxodir</br>
+		  [1178] MASHARIPOV Temurbek</br>
+		  <p></p>
+		  <b>Categories:</b></br> MTJQ, MQS, MJS, MDS, MCQ
+      </div>
+  </div>
+</div>
+</br>
+<div class="popup_main">
+  <div class="open_popupTwo">Vietnam</div>
+  <div class="popup_body">
+    <div class="popup_back"></div>
+      <div class="popup_contain">
+        <div class="popup_close">x</div>
+             <h1>Vietnam</h1><b>Medal Count:</b> Gold: 0 | Silver: 2 | Bronze: 2</br>
+		  <p></p>
+		  <b>Athletes</b></br>
+		  [1231] CAO Khac Dat</br>
+		  [1232] NGUYEN Manh Quyen</br>
+		  [1233] NGUYEN Thanh Tung</br>
+		  [1234] TRAN Xuan Hiep</br>
+		  [1235] TRAN THI Khanh Ly</br>
+		  [1237] HOANG Thi Phuong Giang</br>
+		  [1238] NGUYEN Thuy Linh</br>
+		  [1239] DUONG Thuy Vi</br>
+		  <p></p>
+		  <b>Categories:</b></br> WTJQ, WTJJ, WQS, WNQ, WNG, WND, WJS, WGS, WDS, WCQ, 
+		  MTJQ, MTJJ, MNQ, MNG, MND, MGS, MDS, MCQ
+      </div>
+  </div>
+</div>
+
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
+<script>
+		 $(".open_popupTwo").click(function () {
+   $(this).parent(".popup_main").children(".popup_body").addClass("popup_body_show");
+   });
+ $(".popup_close").click(function () {
+   $(".popup_body").removeClass("popup_body_show");
+   });
+ $(".popup_back").click(function () {
+   $(".popup_body").removeClass("popup_body_show");
+   });
+</script>
+	
+<script>
+		 $(".open_popup").click(function () {
+   $(this).parent(".popup_main").children(".popup_body").addClass("popup_body_show");
+   });
+ $(".popup_close").click(function () {
+   $(".popup_body").removeClass("popup_body_show");
+   });
+ $(".popup_back").click(function () {
+   $(".popup_body").removeClass("popup_body_show");
+   });
+</script>
+
+<div id="topBlockImg"></div>
+<div id="topBlock">The 13th WWC</br><font color="#6FA0A3">Infovis</font></div>
+<div id="header">
+<div id="linkBlock"><div id="link">
+<a href="file:///C:/Users/Charlie/Downloads/D3/finalProject.html">index</a>
+<a href="file:///C:/Users/Charlie/Downloads/D3/countries.html">countries</a>
+<a href="file:///C:/Users/Charlie/Downloads/D3/continent.html">continents</a>
+<a href="file:///C:/Users/Charlie/Downloads/D3/scores.html">scores</a>
+<a href="file:///C:/Users/Charlie/Downloads/D3/summary.html">summary</a>
+</div></div></div>
+
+<div id="title"><b>Countries</b></div>      
+    
+<p><span title="ʙᴀᴄᴋ ᴛᴏ ᴛᴏᴘ"><a href="#top" style="position: fixed; bottom: 10px; right: 10px; text-decoration: none; color: #424242; font-size: 20px; z-index: 9999999999;">▲</a></span></p>
+
+	
+  </body>
+</html>
